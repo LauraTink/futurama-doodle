@@ -1,0 +1,20 @@
+.character-card {
+  max-width: 200px;
+  overflow: hidden;
+
+  .mat-card-image {
+    width: auto;
+    min-height: 230px;
+    max-height: 230px;
+  }
+
+  &.thumbnail {
+    max-width: 100px;
+
+    .mat-card-image {
+      width: auto;
+      min-height: 140px;
+      max-height: 140px;
+    }
+  }
+}

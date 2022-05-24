@@ -1,0 +1,6 @@
+<mat-card class="character-card" [class.thumbnail]="thumbnails">
+  <img mat-card-image [src]="character.images.main" alt="Photo of {{ character.name.first }} {{ character.name.last }}">
+  <mat-card-content *ngIf="!thumbnails">
+    <p>{{ character.name.first }} {{ character.name.last }}</p>
+  </mat-card-content>
+</mat-card>
