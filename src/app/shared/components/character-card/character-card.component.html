@@ -1,4 +1,4 @@
-<mat-card class="character-card" [class.thumbnail]="thumbnails">
+<mat-card class="character-card" [class.thumbnail]="thumbnails" (click)="loadCharacter(character.id)">
   <img mat-card-image [src]="character.images.main" alt="Photo of {{ character.name.first }} {{ character.name.last }}">
   <mat-card-content *ngIf="!thumbnails">
     <p>{{ character.name.first }} {{ character.name.last }}</p>

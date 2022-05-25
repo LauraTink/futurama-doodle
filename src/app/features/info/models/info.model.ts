@@ -1,8 +1,8 @@
-import { creatorsDetails } from "./creators.model";
+import { CreatorsDetails } from "./creators.model";
 
 export interface Info {
   id: number;
   synopsis: string;
   yearsAired: string;
-  creators: creatorsDetails[];
+  creators: CreatorsDetails[];
 }

@@ -1,4 +1,4 @@
-export interface creatorsDetails {
+export interface CreatorsDetails {
   name: string;
   url: string;
 }

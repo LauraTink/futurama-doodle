@@ -9,19 +9,22 @@
             <p>{{ programInfo.synopsis }}</p>
           </div>
 
-          <div>
-            <p><strong>Years Aired</strong></p>
-            <p>{{ programInfo.yearsAired }}</p>
+          <div fxLayout="column" fxLayoutGap="12px">
+            <div>
+              <p><strong>Years Aired</strong></p>
+              <p>{{ programInfo.yearsAired }}</p>
+            </div>
 
-
-            <p><strong>Creators</strong></p>
-            <mat-chip-list>
-              <a *ngFor="let creator of programInfo.creators" [href]="creator.url" target="_blank">
-                <mat-chip>
-                  {{ creator.name }}
-                </mat-chip>
-              </a>
-            </mat-chip-list>
+            <div>
+              <p><strong>Creators</strong></p>
+              <mat-chip-list>
+                <a *ngFor="let creator of programInfo.creators" [href]="creator.url" target="_blank">
+                  <mat-chip>
+                    {{ creator.name }}
+                  </mat-chip>
+                </a>
+              </mat-chip-list>
+            </div>
           </div>
         </div>
 

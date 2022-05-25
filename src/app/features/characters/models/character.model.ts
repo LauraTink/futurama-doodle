@@ -1,11 +1,11 @@
-import { image } from "./image.model";
-import { fullName } from "./name.model";
+import { Image } from "./image.model";
+import { FullName } from "./name.model";
 
-export interface character {
+export interface Character {
   id: number;
   age: number;
-  name: fullName;
-  images: image;
+  name: FullName;
+  images: Image;
   gender: string;
   species: string;
   homePlanet: string;

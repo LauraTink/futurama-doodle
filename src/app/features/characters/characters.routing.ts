@@ -1,10 +1,14 @@
 import { Routes } from '@angular/router';
 
-import { CharactersListComponent } from './components/characters-list/characters-list.component';
+import { CharacterDetailsComponent, CharactersListComponent } from './components';
 
 export const routes: Routes = [
   {
     path: '',
     component: CharactersListComponent,
+  },
+  {
+    path:'details/:id',
+    component: CharacterDetailsComponent
   }
 ];

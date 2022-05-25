@@ -1,0 +1,45 @@
+.quotes {
+  margin: 0 -12px;
+
+  .quote-card {
+    min-width: calc(100% / 4);
+    margin: 0 12px 24px;
+    padding: 12px;
+
+    p {
+      font-size: 1.4rem;
+      line-height: 2rem;
+      padding: 24px 12px;
+
+      span {
+        font-size: 4rem;
+
+        &:first-of-type {
+          position: absolute;
+          top: 24px;
+          left: 20px;
+        }
+
+        &:last-of-type {
+          position: absolute;
+          bottom: 0;
+          right: 20px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  img.mat-card-image {
+    max-height: 200px;
+    width: auto;
+    margin: 0 auto;
+  }
+
+  .quotes {
+    .quote-card {
+      min-width: 100%;
+    }
+  }
+}

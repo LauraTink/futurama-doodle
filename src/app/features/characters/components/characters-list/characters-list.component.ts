@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { take } from 'rxjs';
-import { character } from '../../models/character.model';
+import { Character } from '../../models/character.model';
 
 import { CharactersService } from '../../services/characters.service';
 
@@ -12,12 +12,12 @@ import { CharactersService } from '../../services/characters.service';
 })
 export class CharactersListComponent implements OnInit {
 
-  characters: character[] | undefined;
+  characters: Character[] | undefined;
 
   constructor(private charactersService: CharactersService, private router: Router) { }
 
   ngOnInit(): void {
-    this.charactersService.get<character[]>('characters').pipe(take(1)).subscribe((data: character[]) => {
+    this.charactersService.get<Character[]>('characters').pipe(take(1)).subscribe((data: Character[]) => {
       this.characters = data;
       console.log(data);
     })

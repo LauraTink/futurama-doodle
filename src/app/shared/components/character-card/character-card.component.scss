@@ -18,3 +18,21 @@
     }
   }
 }
+
+@media screen and (max-width: 600px) {
+  .character-card {
+    .mat-card-image {
+      margin: 0 auto;
+      min-height: 120px;
+      max-height: 120px;
+    }
+
+    &.thumbnail {
+      .mat-card-image {
+        margin: 0 auto;
+        min-height: 80px;
+        max-height: 80px;
+      }
+    }
+  }
+}

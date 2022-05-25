@@ -1,4 +1,4 @@
-export interface image {
+export interface Image {
   headshot: string;
   main: string;
 }
