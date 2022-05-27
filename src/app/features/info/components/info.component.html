@@ -1,4 +1,4 @@
-<div fxFlex fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="center start" class="content-container">
+<div fxFlex fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="center start" >
   <mat-card fxFlex.md="80" fxFlex.gt-md="60">
     <img mat-card-image src="/assets/webp/banner.webp" alt="Photo from Futurama">
     <mat-card-content>
@@ -30,8 +30,8 @@
 
         <h2>Characters</h2>
 
-        <div fxFlex fxLayout="row wrap" fxLayoutGap="12px grid">
-          <app-character-card *ngFor="let character of characters" [character]="character" [thumbnails]="true">
+        <div fxFlex fxLayout="row wrap" fxLayoutGap="12px grid" class="character-grid">
+          <app-character-card *ngFor="let character of characters" fxFlex [character]="character" [thumbnails]="true">
           </app-character-card>
         </div>
       </div>
@@ -39,7 +39,6 @@
 
     <mat-card-actions fxLayoutAlign="end" fxLayoutGap="6px">
       <button mat-button (click)="navigate('characters')">View all characters</button>
-      <button mat-button (click)="navigate('quiz')">Test your knowledge</button>
     </mat-card-actions>
   </mat-card>
 </div>

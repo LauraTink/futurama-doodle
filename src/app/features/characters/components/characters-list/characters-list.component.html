@@ -1,14 +1,14 @@
 <div fxFill fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="48px">
   <h1>Meet the characters</h1>
 
-  <div fxFill fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="center start" class="content-container">
-    <div fxFlex fxFlex.md="80" fxFlex.gt-md="60" fxLayout="row wrap" fxLayoutGap="12px grid" fxLayoutGap.gt-sm="24px grid">
-      <app-character-card *ngFor="let character of characters" [character]="character"></app-character-card>
+  <div fxFill fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="center start" >
+    <div fxFlex fxFlex.md="80" fxFlex.gt-md="60" fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutGap="12px grid" fxLayoutGap.gt-sm="24px grid">
+      <app-character-card *ngFor="let character of characters" fxFlex fxFlex.gt-xs="50" fxFlex.gt-sm="33" fxFlex.gt-lg="25" [character]="character"></app-character-card>
     </div>
   </div>
 </div>
 
-<button mat-fab matTooltip="Return to overview" (click)="navigate()">
+<button mat-fab color="primary" matTooltip="Return to overview" (click)="navigate()">
   <mat-icon>
     arrow_back
   </mat-icon>

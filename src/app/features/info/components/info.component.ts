@@ -17,7 +17,11 @@ export class InfoComponent implements OnInit {
 
   characters: Character[] | undefined;
 
-  constructor(private infoService: InfoService, private charactersService: CharactersService, private router: Router) {}
+  constructor(
+    private infoService: InfoService,
+    private charactersService: CharactersService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.infoService
@@ -25,13 +29,13 @@ export class InfoComponent implements OnInit {
       .pipe(take(1))
       .subscribe((data: Info[]) => (this.programInfo = data[0]));
 
-
-    this.charactersService.get<Character[]>('characters').pipe(take(1)).subscribe((data: Character[]) => {
-      this.characters = data.slice(0, 10);
-    });
+    this.charactersService
+      .get<Character[]>('characters')
+      .pipe(take(1))
+      .subscribe((data: Character[]) => (this.characters = data.slice(0, 10)));
   }
 
-  navigate(path: string) {
+  navigate(path: string): void {
     this.router.navigate([`/${path}`]);
   }
 }

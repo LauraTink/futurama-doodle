@@ -1,6 +1,25 @@
-<mat-toolbar color="primary">
-  <img src="/assets/svgs/Futurama_logo.svg" alt="Futurama" width="160px">
+<mat-toolbar>
+  <div fxHide.gt-sm>
+    <button mat-button [matMenuTriggerFor]="menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="navigate('')">Home</button>
+      <button mat-menu-item (click)="navigate('characters')">Characters</button>
+      <button mat-menu-item (click)="navigate('quiz')">Quiz</button>
+    </mat-menu>
+  </div>
+
+  <div class="navigation-links">
+    <mat-nav-list>
+      <a mat-list-item href="/"> <img src="/assets/svgs/Futurama_logo.svg" alt="Futurama" width="126px"> </a>
+      <a mat-list-item href="/characters" fxHide.xs fxHide.sm> characters </a>
+      <a mat-list-item href="/quiz" fxHide.xs fxHide.sm> Quiz </a>
+    </mat-nav-list>
+  </div>
 </mat-toolbar>
+
+<mat-divider></mat-divider>
 
 <mat-sidenav-container class="layout-container">
   <mat-sidenav-content>

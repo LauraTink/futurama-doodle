@@ -1,3 +1,8 @@
 .banner-background {
   background: url('/assets/webp/banner.webp') center 0 no-repeat;
 }
+
+.character-grid {
+  min-height: 205px;
+  overflow: hidden;
+}

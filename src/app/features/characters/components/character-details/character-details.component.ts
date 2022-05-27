@@ -25,12 +25,11 @@ export class CharacterDetailsComponent implements OnInit {
       this.charactersService.get<Character[]>('characters').pipe(take(1)).subscribe((data: Character[]) => {
         this.character = data.find(x => x.id === id);
         this.character?.sayings.sort((a, b) => a.length - b.length);
-        console.log(data);
       })
     }
   }
 
-  navigate() {
+  navigate(): void {
     this.router.navigate(['/characters']);
   }
 }

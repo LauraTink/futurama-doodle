@@ -3,12 +3,12 @@ import { RouterModule } from '@angular/router';
 
 import { SharedModule } from '@shared/shared.module';
 import { routes } from './quiz.routing';
-import { QuestionComponent } from './question/question.component';
-import { ResultComponent } from './result/result.component';
+import { QuestionComponent } from './components/question/question.component';
+import { QuizService } from './services/quiz.service';
 
 @NgModule({
   imports: [SharedModule, RouterModule.forChild(routes)],
-  declarations: [QuestionComponent, ResultComponent],
-  providers: [],
+  declarations: [QuestionComponent],
+  providers: [QuizService],
 })
 export class QuizModule {}

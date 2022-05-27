@@ -6,6 +6,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AngularMaterialModule } from './modules/angular-material.module';
 import { LayoutComponent } from './components/layout/layout.component';
+import { ErrorComponent } from './components/error/error.component';
 import { CharacterCardComponent } from './components/character-card/character-card.component';
 
 @NgModule({
@@ -19,6 +20,7 @@ import { CharacterCardComponent } from './components/character-card/character-ca
   ],
   declarations: [
     LayoutComponent,
+    ErrorComponent,
     CharacterCardComponent
   ],
   exports: [
@@ -29,6 +31,7 @@ import { CharacterCardComponent } from './components/character-card/character-ca
     FlexLayoutModule,
     RouterModule,
 
+    ErrorComponent,
     CharacterCardComponent
   ],
   entryComponents: [],

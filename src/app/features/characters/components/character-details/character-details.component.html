@@ -1,18 +1,13 @@
-<div fxLayout="row" fxLayoutAlign="center start" class="content-container">
+<div fxLayout="row" fxLayoutAlign="center start">
   <div *ngIf="character" fxFlex.md="80" fxFlex.gt-md="60" fxLayout="column" fxLayoutGap="24px">
-    <div fxFlex fxLayout="column-reverse" fxLayout.gt-sm="row" fxLayoutGap="24px">
-      <mat-card>
-        <img mat-card-image [src]="character.images.main"
-          alt="Photo of {{ character.name.first }} {{ character.name.last }}">
-      </mat-card>
-
+    <div fxFlex fxLayout="column-reverse" fxLayout.gt-xs="row" fxLayoutGap="24px">
       <div fxFlex fxLayout="column">
-        <h1>{{ character.name.first }} {{ character.name.last }}</h1>
+        <h1 class="details">{{ character.name.first }} {{ character.name.last }}</h1>
         <h2>Details</h2>
 
         <mat-card fxFlex>
-          <mat-card-content>
-            <ul class="info-list">
+          <mat-card-content fxLayout="column" fxLayout.gt-xs="row" fxLayoutGap="24px">
+            <ul fxFlex class="info-list">
               <li>
                 <div>
                   <p><strong>Full Name</strong></p>
@@ -29,7 +24,7 @@
                   <p><strong>Occupation</strong></p>
                 </div>
                 <div>
-                  <p>{{ character.occupation }}</p>
+                  <p>{{ character.occupation || 'Unknown' }}</p>
                 </div>
               </li>
               <li>
@@ -53,7 +48,7 @@
                   <p><strong>Species</strong></p>
                 </div>
                 <div>
-                  <p>{{ character.species }}</p>
+                  <p>{{ character.species || 'Unknown' }}</p>
                 </div>
               </li>
               <li>
@@ -61,10 +56,16 @@
                   <p><strong>Home Planet</strong></p>
                 </div>
                 <div>
-                  <p>{{ character.homePlanet }}</p>
+                  <p>{{ character.homePlanet || 'Unknown' }}</p>
                 </div>
               </li>
             </ul>
+
+            <div>
+              <div class="image-container">
+                <img [src]="character.images.main" alt="Photo of {{ character.name.first }} {{ character.name.last }}">
+              </div>
+            </div>
           </mat-card-content>
 
           <mat-card-actions>
@@ -85,7 +86,7 @@
   </div>
 </div>
 
-<button mat-fab matTooltip="Return to list" (click)="navigate()">
+<button mat-fab color="primary" matTooltip="Return to list" (click)="navigate()">
   <mat-icon>
     arrow_back
   </mat-icon>

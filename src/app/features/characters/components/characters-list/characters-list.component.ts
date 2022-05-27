@@ -8,22 +8,23 @@ import { CharactersService } from '../../services/characters.service';
 @Component({
   selector: 'app-characters-list',
   templateUrl: './characters-list.component.html',
-  styleUrls: ['./characters-list.component.scss']
 })
 export class CharactersListComponent implements OnInit {
-
   characters: Character[] | undefined;
 
-  constructor(private charactersService: CharactersService, private router: Router) { }
+  constructor(
+    private charactersService: CharactersService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.charactersService.get<Character[]>('characters').pipe(take(1)).subscribe((data: Character[]) => {
-      this.characters = data;
-      console.log(data);
-    })
+    this.charactersService
+      .get<Character[]>('characters')
+      .pipe(take(1))
+      .subscribe((data: Character[]) => (this.characters = data));
   }
 
-  navigate() {
+  navigate(): void {
     this.router.navigate(['/']);
   }
 }
