@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { take } from 'rxjs';
-import { Character } from '../../models/character.model';
 
+import { catchError, finalize, of, take } from 'rxjs';
+
+import { Character } from '../../models/character.model';
 import { CharactersService } from '../../services/characters.service';
 
 @Component({
@@ -10,7 +11,9 @@ import { CharactersService } from '../../services/characters.service';
   templateUrl: './characters-list.component.html',
 })
 export class CharactersListComponent implements OnInit {
-  characters: Character[] | undefined;
+  loading = true;
+  error = '';
+  characters!: Character[];
 
   constructor(
     private charactersService: CharactersService,
@@ -19,9 +22,19 @@ export class CharactersListComponent implements OnInit {
 
   ngOnInit(): void {
     this.charactersService
-      .get<Character[]>('characters')
-      .pipe(take(1))
-      .subscribe((data: Character[]) => (this.characters = data));
+      .get()
+      .pipe(
+        take(1),
+        catchError((err) => {
+          this.error = err?.message;
+          return of([]);
+        }),
+        finalize(() => (this.loading = false))
+      )
+      .subscribe((data: Character[]) => {
+        this.characters = data;
+        this.charactersService.characters = data;
+      });
   }
 
   navigate(): void {

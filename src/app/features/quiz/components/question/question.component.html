@@ -1,6 +1,8 @@
-<mat-progress-bar *ngIf="!question && loading && !error; else showQuiz" mode="indeterminate"></mat-progress-bar>
+<ng-container *ngIf="error || loading; else showQuiz">
+  <mat-progress-bar *ngIf="loading && !error" mode="indeterminate"></mat-progress-bar>
 
-<app-error *ngIf="error" [errorMessage]="error"></app-error>
+  <app-error *ngIf="error && !loading" [errorMessage]="error"></app-error>
+</ng-container>
 
 <ng-template #showQuiz>
   <div fxFill fxLayout="row" fxLayoutAlign="center start">

@@ -26,7 +26,7 @@ export class QuestionComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.quizService.get<Question[]>('questions')
+    this.quizService.get()
       .pipe(
         take(1),
         catchError((err) => {

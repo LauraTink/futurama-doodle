@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Character } from '@app/features/characters/models/character.model';
-import { CharactersService } from '@app/features/characters/services/characters.service';
-import { take } from 'rxjs';
-import { Info } from '../models/info.model';
 
+import { catchError, combineLatest, finalize, of, take } from 'rxjs';
+
+import { Character } from '@app/features/characters/models/character.model';
+import { Info } from '../models/info.model';
 import { InfoService } from '../services/info.service';
 
 @Component({
@@ -13,26 +13,34 @@ import { InfoService } from '../services/info.service';
   styleUrls: ['./info.component.scss'],
 })
 export class InfoComponent implements OnInit {
-  programInfo: Info | undefined;
+  loading = true;
+  error = '';
+  programInfo: Info | undefined = {} as Info;
 
   characters: Character[] | undefined;
 
   constructor(
     private infoService: InfoService,
-    private charactersService: CharactersService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.infoService
-      .get<Info[]>('info')
-      .pipe(take(1))
-      .subscribe((data: Info[]) => (this.programInfo = data[0]));
-
-    this.charactersService
-      .get<Character[]>('characters')
-      .pipe(take(1))
-      .subscribe((data: Character[]) => (this.characters = data.slice(0, 10)));
+    combineLatest([
+      this.infoService.get(),
+      this.infoService.getCharacters(),
+    ])
+      .pipe(
+        take(1),
+        catchError((err) => {
+          this.error = err?.message;
+          return of([]);
+        }),
+        finalize(() => (this.loading = false))
+      )
+      .subscribe(([info, characters]) => {
+        this.programInfo = info[0];
+        this.characters = characters;
+      });
   }
 
   navigate(path: string): void {

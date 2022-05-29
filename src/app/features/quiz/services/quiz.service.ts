@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { BaseService } from '@app/shared/services/base.service';
+import { Observable } from 'rxjs';
+
+import { environment } from '@env/environment';
 import { Question, UserScore } from '../models';
 
 @Injectable()
-export class QuizService extends BaseService {
+export class QuizService {
   private _questions: Question[] = [];
   set questions(data: Question[]) {
     this._questions = data;
@@ -26,7 +28,9 @@ export class QuizService extends BaseService {
     return this._userScore;
   }
 
-  constructor(http: HttpClient) {
-    super(http);
+  constructor(private httpClient: HttpClient) {}
+
+  get(): Observable<Question[]> {
+    return this.httpClient.get<Question[]>(`${environment.apiUrl}/questions`);
   }
 }

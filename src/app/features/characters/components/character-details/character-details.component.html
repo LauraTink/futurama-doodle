@@ -1,93 +1,101 @@
-<div fxLayout="row" fxLayoutAlign="center start">
-  <div *ngIf="character" fxFlex.md="80" fxFlex.gt-md="60" fxLayout="column" fxLayoutGap="24px">
-    <div fxFlex fxLayout="column-reverse" fxLayout.gt-xs="row" fxLayoutGap="24px">
-      <div fxFlex fxLayout="column">
-        <h1 class="details">{{ character.name.first }} {{ character.name.last }}</h1>
-        <h2>Details</h2>
+<ng-container *ngIf="error || loading; else details">
+  <mat-progress-bar *ngIf="loading && !error" mode="indeterminate"></mat-progress-bar>
 
-        <mat-card fxFlex>
-          <mat-card-content fxLayout="column" fxLayout.gt-xs="row" fxLayoutGap="24px">
-            <ul fxFlex class="info-list">
-              <li>
-                <div>
-                  <p><strong>Full Name</strong></p>
-                </div>
-                <div>
-                  <p>
-                    {{ character.name.first }}
-                    {{ character.name.middle ? character.name.middle + ' ' : '' }}{{ character.name.last }}
-                  </p>
-                </div>
-              </li>
-              <li>
-                <div>
-                  <p><strong>Occupation</strong></p>
-                </div>
-                <div>
-                  <p>{{ character.occupation || 'Unknown' }}</p>
-                </div>
-              </li>
-              <li>
-                <div>
-                  <p><strong>Age</strong></p>
-                </div>
-                <div>
-                  <p>{{ character.age }}</p>
-                </div>
-              </li>
-              <li>
-                <div>
-                  <p><strong>Gender</strong></p>
-                </div>
-                <div>
-                  <p>{{ character.gender }}</p>
-                </div>
-              </li>
-              <li>
-                <div>
-                  <p><strong>Species</strong></p>
-                </div>
-                <div>
-                  <p>{{ character.species || 'Unknown' }}</p>
-                </div>
-              </li>
-              <li>
-                <div>
-                  <p><strong>Home Planet</strong></p>
-                </div>
-                <div>
-                  <p>{{ character.homePlanet || 'Unknown' }}</p>
-                </div>
-              </li>
-            </ul>
+  <app-error *ngIf="error && !loading" [errorMessage]="error"></app-error>
+</ng-container>
 
-            <div>
-              <div class="image-container">
-                <img [src]="character.images.main" alt="Photo of {{ character.name.first }} {{ character.name.last }}">
+<ng-template #details>
+  <div fxLayout="row" fxLayoutAlign="center start">
+    <div *ngIf="character" fxFlex.md="80" fxFlex.gt-md="60" fxLayout="column" fxLayoutGap="24px">
+      <div fxFlex fxLayout="column-reverse" fxLayout.gt-xs="row" fxLayoutGap="24px">
+        <div fxFlex fxLayout="column">
+          <h1 class="details">{{ character.name.first }} {{ character.name.last }}</h1>
+          <h2>Details</h2>
+
+          <mat-card fxFlex>
+            <mat-card-content fxLayout="column" fxLayout.gt-xs="row" fxLayoutGap="24px">
+              <ul fxFlex class="info-list">
+                <li>
+                  <div>
+                    <p><strong>Full Name</strong></p>
+                  </div>
+                  <div>
+                    <p>
+                      {{ character.name.first }}
+                      {{ character.name.middle ? character.name.middle + ' ' : '' }}{{ character.name.last }}
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <p><strong>Occupation</strong></p>
+                  </div>
+                  <div>
+                    <p>{{ character.occupation || 'Unknown' }}</p>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <p><strong>Age</strong></p>
+                  </div>
+                  <div>
+                    <p>{{ character.age }}</p>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <p><strong>Gender</strong></p>
+                  </div>
+                  <div>
+                    <p>{{ character.gender }}</p>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <p><strong>Species</strong></p>
+                  </div>
+                  <div>
+                    <p>{{ character.species || 'Unknown' }}</p>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <p><strong>Home Planet</strong></p>
+                  </div>
+                  <div>
+                    <p>{{ character.homePlanet || 'Unknown' }}</p>
+                  </div>
+                </li>
+              </ul>
+
+              <div>
+                <div class="image-container">
+                  <img [src]="character.images.main"
+                    alt="Photo of {{ character.name.first }} {{ character.name.last }}">
+                </div>
               </div>
-            </div>
+            </mat-card-content>
+
+            <mat-card-actions>
+
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </div>
+
+      <h3>Sayings</h3>
+      <div fxFlex fxLayout="row wrap" class="quotes">
+        <mat-card fxFlex *ngFor="let saying of character.sayings" class="quote-card">
+          <mat-card-content>
+            <p><span>&#8220;</span>{{ saying }}<span>&#8221;</span></p>
           </mat-card-content>
-
-          <mat-card-actions>
-
-          </mat-card-actions>
         </mat-card>
       </div>
     </div>
-
-    <h3>Sayings</h3>
-    <div fxFlex fxLayout="row wrap" class="quotes">
-      <mat-card fxFlex *ngFor="let saying of character.sayings" class="quote-card">
-        <mat-card-content>
-          <p><span>&#8220;</span>{{ saying }}<span>&#8221;</span></p>
-        </mat-card-content>
-      </mat-card>
-    </div>
   </div>
-</div>
 
-<button mat-fab color="primary" matTooltip="Return to list" (click)="navigate()">
-  <mat-icon>
-    arrow_back
-  </mat-icon>
-</button>
+  <button mat-fab color="primary" matTooltip="Return to list" (click)="navigate()">
+    <mat-icon>
+      arrow_back
+    </mat-icon>
+  </button>
